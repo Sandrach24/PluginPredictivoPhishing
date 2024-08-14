@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "Detector de Phishing de Correos",
+  "version": "1.0",
+  "description": "Detecta intentos de phishing en correos electrónicos",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "notifications",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://mail.google.com/*",
+    "https://outlook.live.com/*",
+    "http://localhost:8000/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mail.google.com/*",
+        "https://outlook.live.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/advertencia.png",
+      "48": "icons/email.png",
+      "128": "icons/seguridad.png"
+    }
+  },
+  "icons": {
+    "16": "icons/advertencia.png",
+    "48": "icons/email.png",
+    "128": "icons/seguridad.png"
+  }
+}
+
+
