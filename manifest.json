@@ -1,18 +1,17 @@
 {
   "manifest_version": 3,
   "name": "Detector de Phishing de Correos",
-  "version": "1.0",
+  "version": "1.2",
   "description": "Detecta intentos de phishing en correos electrónicos",
   "permissions": [
     "activeTab",
-    "storage",
-    "notifications",
-    "alarms"
+    "storage"
   ],
   "host_permissions": [
     "https://mail.google.com/*",
     "https://outlook.live.com/*",
-    "http://localhost:8000/*"
+    "http://localhost:8000/*",
+    "https://expensive-boiling-cylinder.glitch.me/*"
   ],
   "background": {
     "service_worker": "background.js"

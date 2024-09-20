@@ -7,7 +7,24 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       .then(data => {
         const userIP = data.ip;
 
-        fetch('http://localhost:8000/check-phishing', {
+        // Agregar lógica para identificar correos sospechosos si es necesario
+        const isSuspicious = false; // Determina esto según tu lógica adicional
+
+        // Registro de depuración
+        console.log('Enviando datos al servidor con el siguiente payload:');
+        console.log({
+          id: request.id,
+          text: request.content,
+          subject: request.subject,
+          sender: request.sender,
+          attachments: request.attachments,
+          url: request.url,
+          date: request.date,
+          ip: userIP,
+          initialPhishingStatus: isSuspicious
+        });
+
+        fetch('https://expensive-boiling-cylinder.glitch.me/check-phishing', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -21,6 +38,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             url: request.url,
             date: request.date,
             ip: userIP,
+            initialPhishingStatus: isSuspicious,
             action: 'validateAndStore'
           }),
         })
